@@ -1,10 +1,18 @@
 import React, { useReducer, useState } from 'react';
-import { ADD_TASK, EDIT_TASK, REMOVE_TASK } from '../actions/TodoActions';
+import {
+    ADD_TASK,
+    EDIT_TASK,
+    REMOVE_TASK,
+    REMOVE_TASKS,
+} from '../actions/TodoActions';
 import { initialState, TodoReducer } from '../reducers/TodoReducer';
+import './TodoApp.css';
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
 
 const TodoApp = () => {
     const [todos, dispatch] = useReducer(TodoReducer, initialState);
-    const { tasks } = todos;
+    const { tasks, button, taskToEdit } = todos;
 
     const [text, setText] = useState('');
     //    const [textChange, setTextChange] = useState('');
@@ -17,6 +25,10 @@ const TodoApp = () => {
             payload: newTodo,
         });
         setText('');
+    };
+
+    const handleChange = (e) => {
+        setText(e.target.value);
     };
 
     const handleDelete = (id) => {
@@ -33,119 +45,37 @@ const TodoApp = () => {
         });
     };
 
+    const clearAll = () => {
+        dispatch({
+            type: REMOVE_TASKS,
+        });
+    };
+
     return (
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                minHeight: '70vh',
-                backgroundColor: 'hsl(30, 87%, 61%)',
-            }}
-        >
+        <div className="contenedorPadre">
             <h2>useReducer en TodoList 📝</h2>
             <div>
-                <form
-                    onSubmit={handleSubmit}
-                    action=""
-                    style={{ display: 'flex', flexDirection: 'column' }}
-                >
-                    <input
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        placeholder="Tarea"
-                        style={{
-                            fontSize: '20px',
-                            padding: '10px',
-                            marginBottom: '10px',
-                            borderRadius: '8px',
-                            border: 'none',
-                        }}
-                    />
-                    <button
-                        style={{
-                            fontSize: '17px',
-                            padding: '8px',
-                            width: '40%',
-                            borderRadius: '8px',
-                            border: 'none',
-                        }}
-                    >
-                        Add
-                    </button>
-                </form>
+                <TodoForm
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    button={button}
+                    text={text}
+                    taskToEdit={taskToEdit}
+                />
             </div>
-            <div
-                style={{
-                    marginTop: '10px',
-                    border: '4px solid white',
-                    borderRadius: '8px',
-                    width: '50%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    padding: '10px',
-                }}
-            >
-                {tasks?.length > 0 && (
-                    <>
-                        {tasks?.map((tarea) => (
-                            <div
-                                key={tarea.id}
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    width: '80%',
-                                    padding: '0px 12px',
-                                }}
-                            >
-                                <p
-                                    style={{
-                                        backgroundColor: 'white',
-                                        width: '120px',
-                                        padding: '8px',
-                                        borderRadius: '8px',
-                                    }}
-                                >
-                                    {tarea.title}
-                                </p>
 
-                                <div>
-                                    <button
-                                        style={{
-                                            fontSize: '15px',
-                                            padding: '8px',
-                                            borderRadius: '8px',
-                                            border: 'none',
-                                            marginRight: '5px',
-                                            color: 'white',
-                                            backgroundColor: 'green',
-                                        }}
-                                        onClick={() => handleEdit(tarea)}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        style={{
-                                            fontSize: '15px',
-                                            padding: '8px',
-                                            borderRadius: '8px',
-                                            border: 'none',
-                                            color: 'white',
-                                            backgroundColor: '#ff0025',
-                                        }}
-                                        onClick={() => handleDelete(tarea.id)}
-                                    >
-                                        X
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </>
-                )}
-            </div>
+            <>
+                <div className="containerTasks">
+                    <TodoList
+                        handleDelete={handleDelete}
+                        handleEdit={handleEdit}
+                        tasks={tasks}
+                    />
+                    <button className="deleteAll" onClick={clearAll}>
+                        Eliminar todas las tareas
+                    </button>
+                </div>
+            </>
         </div>
     );
 };
