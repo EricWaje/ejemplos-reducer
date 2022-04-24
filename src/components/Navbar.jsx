@@ -1,16 +1,39 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
     return (
         <nav>
-            <h2>useReducer</h2>
+            <Link to="/">
+                <h2>useReducer</h2>
+            </Link>
             <div>
                 <ul>
-                    <Link to="/">Counter</Link>
-                    <Link to="/todo">TodoApp</Link>
-                    <Link to="/character">Rick and Morty</Link>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive ? 'activo' : null
+                        }
+                        to="/"
+                    >
+                        Counter
+                    </NavLink>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive ? 'activo' : null
+                        }
+                        to="/todo"
+                    >
+                        TodoApp
+                    </NavLink>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive ? 'activo' : null
+                        }
+                        to="/character"
+                    >
+                        Rick and Morty
+                    </NavLink>
                 </ul>
             </div>
         </nav>

@@ -28,7 +28,6 @@ const Characters = () => {
                 >
                     <Pagination pag={data.info} handlerUrl={handlerUrl} />
                     <Character characters={data.results} />
-                    <Pagination pag={data.info} handlerUrl={handlerUrl} />
                 </div>
             )}
         </div>
