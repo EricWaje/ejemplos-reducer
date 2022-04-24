@@ -26,7 +26,7 @@ const Counter = () => {
         <div
             style={{
                 backgroundColor: 'hsl(39, 87%, 61%)',
-                minHeight: '70vh',
+                minHeight: '90vh',
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
