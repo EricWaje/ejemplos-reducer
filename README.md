@@ -1,3 +1,5 @@
+[Demo](https://ejemplos-reducer.vercel.app/)
+
 # useState vs useReducer 💪🏻
 
 Tanto useState como useReducer tienen el mismo objetivo: manejar el estado local de nuestros componentes. La diferencia está en el camino que nos ofrecen para llegar a una solución. No hay ganadores, simplemente hay herramientas y paradigmas que se adaptan mejor a nuestros objetivos.
