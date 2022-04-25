@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useFetch } from '../customHook/useFetch';
+import { useFetch } from '../../customHook/useFetch';
+
 import Character from './Character';
 import './Characters.css';
 import Pagination from './Pagination';

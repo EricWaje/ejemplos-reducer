@@ -7,13 +7,18 @@ export const useFetch = (URL) => {
     const [state, dispatch] = useReducer(fetchReducer, initialState);
 
     const fetchData = useCallback(async () => {
-        const data = await fetch(`${BASE_URL}/${URL}`);
-        const response = await data.json();
-        //const { results } = response;
-        dispatch({
-            type: SET_CHARACTERS,
-            payload: response,
-        });
+        try {
+            const data = await fetch(`${BASE_URL}/${URL}`);
+            const response = await data.json();
+            dispatch({
+                type: SET_CHARACTERS,
+                payload: response,
+            });
+        } catch (error) {
+            dispatch({
+                type: SET_ERROR,
+            });
+        }
     }, [URL]);
 
     useEffect(() => {

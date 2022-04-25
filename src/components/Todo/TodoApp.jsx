@@ -4,8 +4,8 @@ import {
     EDIT_TASK,
     REMOVE_TASK,
     REMOVE_TASKS,
-} from '../actions/TodoActions';
-import { initialState, TodoReducer } from '../reducers/TodoReducer';
+} from '../../actions/TodoActions';
+import { initialState, TodoReducer } from '../../reducers/TodoReducer';
 import './TodoApp.css';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';

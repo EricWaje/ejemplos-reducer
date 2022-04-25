@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Characters from './components/Characters';
-import Counter from './components/Counter';
-import Navbar from './components/Navbar';
-import TodoApp from './components/TodoApp';
+import Navbar from './components/Navbar/Navbar';
+import Counter from './components/Counter/Counter';
+import TodoApp from './components/Todo/TodoApp';
+import Characters from './components/Rick&Morty/Characters';
 
 function App() {
     return (

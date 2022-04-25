@@ -1,9 +1,9 @@
-import { SET_CHARACTERS } from '../actions/FetchActions';
+import { SET_CHARACTERS, SET_ERROR } from '../actions/FetchActions';
 
 export const initialState = {
     data: {},
     loading: true,
-    error: true,
+    error: false,
 };
 
 export const fetchReducer = (state, action) => {
@@ -16,6 +16,13 @@ export const fetchReducer = (state, action) => {
                 },
                 loading: false,
                 error: false,
+            };
+
+        case SET_ERROR:
+            return {
+                data: {},
+                loading: false,
+                error: true,
             };
 
         default:
