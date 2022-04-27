@@ -63,8 +63,9 @@ const TodoApp = () => {
                     taskToEdit={taskToEdit}
                 />
             </div>
-
-            <>
+            {tasks.length === 0 ? (
+                <h1>Aún no hay tareas</h1>
+            ) : (
                 <div className="containerTasks">
                     <TodoList
                         handleDelete={handleDelete}
@@ -75,7 +76,7 @@ const TodoApp = () => {
                         Eliminar todas las tareas
                     </button>
                 </div>
-            </>
+            )}
         </div>
     );
 };
