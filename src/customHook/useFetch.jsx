@@ -18,6 +18,7 @@ export const useFetch = (URL) => {
             dispatch({
                 type: SET_ERROR,
             });
+            console.error(error)
         }
     }, [URL]);
 
